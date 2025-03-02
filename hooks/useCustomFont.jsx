@@ -1,4 +1,4 @@
-import { useFonts } from "expo-font";
+/* import { useFonts } from "expo-font";
 import { Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 
 export const useCustomFont = () => {
@@ -9,4 +9,4 @@ export const useCustomFont = () => {
   return fontsLoaded;
 };
 
-export default useCustomFont
+export default useCustomFont */

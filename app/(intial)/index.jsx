@@ -1,18 +1,17 @@
-import { View, Text, Pressable, ImageBackground, Image } from "react-native";
-import { useRouter } from "expo-router";
+import { View, Text, Image, Pressable, ImageBackground } from "react-native";
 import React, { useCallback, useRef } from "react";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
-  setIntervalID,
   setSpeechFinished,
   setTimeoutID,
 } from "../../reducers/configurations";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAudioQueues, speakWithPause } from "../../services/audioService";
 import { useTranslation } from "react-i18next";
+import i18n from "../../services/translationService";
 
-const EmergencyContactSetup = () => {
-  const router = useRouter();
+const WelcomePage = () => {
+  const router = useNavigation();
   const isSpeechFinished = useSelector(
     (state) => state.configurations.isSpeechFinished
   );
@@ -23,17 +22,14 @@ const EmergencyContactSetup = () => {
   const { t } = useTranslation();
   const timeoutRef = useRef(timeoutID);
   const intervalRef = useRef(intervalID);
-
+  const isFirstTime = useSelector(state => state.configurations.isFirstTime)
+  console.log("isFirstTime :\t", isFirstTime)
   const playAudio = () => {
-    const text = t("emergencyContactScreen", { returnObjects: true }).audio;
-
+    const text = t("welcomeScreen", { returnObjects: true }).audio;
     speakWithPause(dispatch, setSpeechFinished, text, language);
-
     intervalRef.current = setInterval(() => {
       speakWithPause(dispatch, setSpeechFinished, text, language);
-    }, 15000); // Repeat every 10 seconds + speech delay = 15 sec
-
-    dispatch(setIntervalID(intervalRef.current));
+    }, 20000); // Repeat every 10 seconds + speech delay = 15 sec
   };
 
   const handleAudioFeedback = useCallback(() => {
@@ -52,31 +48,45 @@ const EmergencyContactSetup = () => {
 
   useFocusEffect(handleAudioFeedback);
 
+  /* useEffect(() => {
+    alert(`WelcomePage ${isSpeechFinished}`);
+  }, [isSpeechFinished]) */
+
   const handleNavigation = () => {
-    if (isSpeechFinished) {
+    if (isSpeechFinished && isFirstTime) {
       clearAudioQueues(intervalID, timeoutID);
-      router.navigate('/emergency-contact-adding')
+      router.navigate("language-selection"); // Navigate to the next screen
     }
   };
 
   return (
-    <Pressable onPress={handleNavigation}>
+    <Pressable onLongPress={handleNavigation}>
       <ImageBackground
         source={require("../../assets/images/initialSetup/welcomeBG.jpg")}
         blurRadius={12}
       >
         <View className="flex items-center px-2 gap-2 h-full">
-          <View className="h-1/4 w-full mt-4">
+          <Text
+            className="w-full text-center"
+            style={{
+              fontFamily: "Pacifico_400Regular",
+              fontSize: 60,
+            }}
+          >
+            {t("welcomeScreen", { returnObjects: true }).message[0]}
+          </Text>
+
+          <View className="h-1/2 w-full">
             <Image
               className="w-full h-full "
-              source={require("../../assets/images/initialSetup/languageSelection.png")}
+              source={require("../../assets/images/initialSetup/welcome.png")}
               resizeMode="contain"
             />
           </View>
 
           <View className="bg-white/[0.2] rounded-lg p-8 backdrop-blur-lg border">
             <Text className="text-2xl text-center text-black">
-              {t("emergencyContactScreen", { returnObjects: true }).message[0]}
+              {t("welcomeScreen", { returnObjects: true }).message[1]}
             </Text>
           </View>
         </View>
@@ -85,4 +95,4 @@ const EmergencyContactSetup = () => {
   );
 };
 
-export default EmergencyContactSetup;
+export default WelcomePage;

@@ -10,7 +10,7 @@ const speakWithPause = async (
   dispatch(setSpeechFinished(false));
   for (let index = 0; index < text.length; index++) {
     const value = text[index];
-    console.log(`value : ${value}`);
+    console.log(`value before: ${value}`);
 
     await new Promise((resolve) => {
       Speech.speak(value, {
@@ -39,6 +39,7 @@ const speakWithPause = async (
 
     // Adjust the pause duration (in milliseconds) as needed
     await new Promise((resolve) => setTimeout(resolve, 1500));
+    console.log(`value after: ${value}`);
   }
 };
 

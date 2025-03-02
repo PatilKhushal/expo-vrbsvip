@@ -1,51 +1,45 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  recognized: "",
-  pitch: "",
-  error: "",
-  end: "",
-  started: "",
-  results: [],
-  partialResults: [],
+  isSRFinished: true,
+  isSRStarted: false,
+  SR_Result: null,
+  isProceedDetected: null,
+  isConfirmation : null,
+  isError : false,
+  mode : null
 };
 
 export const voiceSlice = createSlice({
-  name: "voice",
+  name: 'voice',
   initialState,
   reducers: {
-    setRecognized: (state, action) => {
-      state.recognized = action.payload;
+    setSRFinished: (state, action) => {
+      state.isSRFinished = action.payload;
     },
-    setPitch: (state, action) => {
-      state.pitch = action.payload;
+    setSRStarted: (state, action) => {
+      state.isSRStarted = action.payload;
     },
-    setError: (state, action) => {
-      state.error = action.payload;
+    setSRResult: (state, action) => {
+      console.log(action.payload);
+      state.SR_Result = action.payload;
     },
-    setEnd: (state, action) => {
-      state.end = action.payload;
+    setProceedDetected: (state, action) => {
+      state.isProceedDetected = action.payload;
     },
-    setStarted: (state, action) => {
-      state.started = action.payload;
+    setConfirmation: (state, action) => {
+      state.isConfirmation = action.payload;
     },
-    setResults: (state, action) => {
-      state.results = action.payload;
+    setIsError: (state, action) => {
+      state.isError = action.payload;
     },
-    setPartialResults: (state, action) => {
-      state.partialResults = action.payload;
+    setMode: (state, action) => {
+      state.mode = action.payload;
     },
   },
 });
 
-export const {
-  setRecognized,
-  setPitch,
-  setError,
-  setEnd,
-  setStarted,
-  setResults,
-  setPartialResults,
-} = voiceSlice.actions;
+export const {setSRFinished, setSRStarted, setSRResult, setProceedDetected, setConfirmation, setIsError, setMode} =
+  voiceSlice.actions;
 
 export default voiceSlice.reducer;

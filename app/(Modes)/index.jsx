@@ -1,17 +1,12 @@
-import {View, Text, Pressable, ImageBackground} from 'react-native';
 import React, {useCallback, useRef} from 'react';
-import {
-  setIntervalID,
-  setIsFirstTime,
-  setSpeechFinished,
-  setTimeoutID,
-} from '../../reducers/configurations';
+import {View, Text, Pressable, ImageBackground} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {setSpeechFinished, setTimeoutID} from '../../reducers/configurations';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearAudioQueues, speakWithPause} from '../../services/audioService';
-import {useTranslation} from 'react-i18next';
 import { useFocusEffect, useNavigation } from 'expo-router';
 
-const SetupCompletion = () => {
+const Home = () => {
   const router = useNavigation();
   const isSpeechFinished = useSelector(
     state => state.configurations.isSpeechFinished,
@@ -19,24 +14,17 @@ const SetupCompletion = () => {
   const intervalID = useSelector(state => state.configurations.intervalID);
   const timeoutID = useSelector(state => state.configurations.timeoutID);
   const language = useSelector(state => state.configurations.language);
-    const isFirstTime = useSelector(state => state.configurations.isFirstTime);
-  
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const timeoutRef = useRef(timeoutID);
   const intervalRef = useRef(intervalID);
-  const message = t("setupCompleteScreen", { returnObjects: true }).message
 
   const playAudio = () => {
-    const text = t('setupCompleteScreen', {returnObjects: true}).audio;
-
+    const text = t('homeScreen', {returnObjects: true}).audio;
     speakWithPause(dispatch, setSpeechFinished, text, language);
-
     intervalRef.current = setInterval(() => {
       speakWithPause(dispatch, setSpeechFinished, text, language);
     }, 25000); // Repeat every 10 seconds + speech delay = 15 sec
-
-    dispatch(setIntervalID(intervalRef.current));
   };
 
   const handleAudioFeedback = useCallback(() => {
@@ -56,11 +44,9 @@ const SetupCompletion = () => {
   useFocusEffect(handleAudioFeedback);
 
   const handleNavigation = () => {
-    if (isSpeechFinished && isFirstTime) {
+    if (isSpeechFinished) {
       clearAudioQueues(intervalID, timeoutID);
-      dispatch(setIsFirstTime(false));
-      console.log("inside setup completion")
-      router.navigate('home'); // Navigate to the next screen
+      router.navigate('mode-selection');
     }
   };
 
@@ -70,15 +56,19 @@ const SetupCompletion = () => {
         source={require('../../assets/images/initialSetup/welcomeBG.jpg')}
         blurRadius={12}>
         <View className="flex items-center px-2 gap-2 h-full justify-center">
-        <View className="bg-white/[0.2] rounded-lg p-8 backdrop-blur-lg border">
-            <Text className="text-2xl text-center text-black">
-              {message[0] + "\n" + message[1] + "\n" + message[2]}
-            </Text>
-          </View>
+          {t('homeScreen', {returnObjects: true}).message.map(
+            (value, index) => (
+              <View className="bg-white/[0.2] rounded-lg p-8 backdrop-blur-lg border w-full" key={index}>
+                <Text className="text-2xl text-center text-black">
+                  {value}
+                </Text>
+              </View>
+            ),
+          )}
         </View>
       </ImageBackground>
     </Pressable>
   );
 };
 
-export default SetupCompletion;
+export default Home;
