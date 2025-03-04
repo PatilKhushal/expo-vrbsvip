@@ -48,7 +48,8 @@ const ConfirmationScreen = () => {
       )
         .then(() => {
           dispatch(setEmergencyContacts(updatedEmergencyContacts));
-          router.replace("emergency-contact-setup");
+          /* router.replace("emergency-contact-setup"); */
+          router.replace("index");
           console.log("Contact added to emergency contacts");
         })
         .catch((error) => console.log(error));
@@ -56,7 +57,8 @@ const ConfirmationScreen = () => {
       isFirstTime &&
       ((isSRFinished && isConfirmation == "false") || isError)
     ) {
-      router.replace("emergency-contact-setup");
+      /* router.replace("emergency-contact-setup"); */
+      router.replace("index");
       console.log("Contact not added to emergency contacts");
     } else if (isFirstTime && isSRFinished && isConfirmation == "neutral")
       router.replace("contact-view");

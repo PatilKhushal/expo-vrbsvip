@@ -9,4 +9,4 @@ export const store = configureStore({
     voice : voiceReducer,
     textMode : textModeReducer
   },
-})
+}) 

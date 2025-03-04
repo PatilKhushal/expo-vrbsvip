@@ -37,9 +37,10 @@ const ListeningScreen = () => {
     if (isProceedDetected && isFirstTime) {
       router.navigate('setup-completion');
       dispatch(setProceedDetected(false))
-    } else if (isFirstTime && isSRFinished && SR_Result != null && SR_Result.length === 0)
-      router.replace('emergency-contact-setup');
-    else if (isFirstTime && isSRFinished && SR_Result != null && SR_Result.length > 0)
+    } else if (isFirstTime && isSRFinished && SR_Result != null && SR_Result.data?.length === 0)
+      /* router.replace('emergency-contact-setup'); */
+      router.replace('index');
+    else if (isFirstTime && isSRFinished && SR_Result != null && SR_Result.data?.length > 0)
       router.replace('contact-view');
   }, [SR_Result, isProceedDetected, isSRFinished, isSRStarted]);
 

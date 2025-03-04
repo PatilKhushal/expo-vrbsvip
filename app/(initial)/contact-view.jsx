@@ -1,18 +1,19 @@
-import {Text, FlatList, Image, Pressable, ImageBackground} from 'react-native';
+import {Text, FlatList, Image, Pressable, ImageBackground, View} from 'react-native';
 import React, {useCallback, useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View} from 'react-native-animatable';
 import { useTranslation } from 'react-i18next';
 import { clearAudioQueues, speakWithPause } from '../../services/audioService';
 import { setIntervalID, setSpeechFinished } from '../../reducers/configurations';
 import { useFocusEffect, useNavigation } from 'expo-router';
+import { setConfirmation } from '../../reducers/voice';
 
 const ContactCard = ({item}) => {
+  console.log("item :\t", item)
   return (
-    item.phoneNumbers[0] && (
+    item.phoneNumbers && (
       <View className="bg-black/[0.7] w-full p-4 rounded-xl flex items-center flex-row border-2 border-white/[0.5]">
         <View className="w-3/4">
-          <Text className="text-purple-500 text-2xl">{item.displayName}</Text>
+          <Text className="text-purple-500 text-2xl">{item.name}</Text>
           <Text className="text-purple-500 text-2xl">
             {item.phoneNumbers[0]?.number}
           </Text>
@@ -26,14 +27,14 @@ const ContactCard = ({item}) => {
 const Avatar = ({item}) => {
   return (
     <View className="w-1/4 rounded-full flex flex-row aspect-square border-2 border-white/[0.5] justify-center bg-gray-700 items-center">
-      {item.hasThumbnail ? (
+      {item.imageAvailable ? (
         <Image
-          source={{uri: item.thumbnailPath}}
+          source={{uri: item.image.uri}}
           className="w-full h-full rounded-full"
         />
       ) : (
         <Text className=" w-full rounded-full text-center text-4xl">
-          {item.displayName[0]}
+          {item.name.charAt(0)}
         </Text>
       )}
     </View>
@@ -61,7 +62,7 @@ const ContactsView = () => {
   const {t} = useTranslation();
 
   const playAudio = () => {
-    const text = t('contactViewScreen', {returnObjects: true, name : SR_Result[0].displayName}).contactFound;
+    const text = t('contactViewScreen', {returnObjects: true, name : SR_Result.data[0].name}).contactFound;
     console.log("text :\t", text)
     speakWithPause(dispatch, setSpeechFinished, text, language);
     intervalRef.current = setInterval(() => {
@@ -79,6 +80,7 @@ const ContactsView = () => {
   }, []);
 
   const handleAudioFeedback = useCallback(() => {
+    dispatch(setConfirmation(null));
     clearAudioQueues(intervalRef.current, timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
@@ -102,7 +104,7 @@ const ContactsView = () => {
       router.replace('confirmation-screen');
     }
   };
-
+  
   return (
     <Pressable onLongPress={handleNavigation}>
       <ImageBackground
@@ -111,7 +113,7 @@ const ContactsView = () => {
         className='h-full px-2'
         >
         <FlatList
-          data={SR_Result}
+          data={SR_Result.data}
           renderItem={({item}) => (
             <View className="w-full flex items-center rounded-xl">
               <ContactCard item={item} />

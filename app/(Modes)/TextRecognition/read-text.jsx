@@ -1,6 +1,5 @@
-import {Pressable} from 'react-native';
+import {Image, Pressable} from 'react-native';
 import React, {useCallback, useRef} from 'react';
-import {Image} from 'react-native-animatable';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   setSpeechFinished,

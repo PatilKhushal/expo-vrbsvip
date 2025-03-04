@@ -1,16 +1,12 @@
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Stack } from "expo-router";
-import LanguageSelection from "./language-selection";
-import WelcomePage from ".";
-import EmergencyContactSetup from "./emergency-contact-setup";
-import ListeningScreen from "./listening-screen";
-import ContactsView from "./contact-view";
-import ConfirmationScreen from "./confirmation-screen";
-import SetupCompletion from "./setup-completion";
+import { useTranslation } from "react-i18next";
 
-const RootLayout = () => {
+const InitialLayout = () => {
+  const { t } = useTranslation();
+
   return (
-    <Stack.Navigator
+    <Stack
       initialRouteName="index"
       screenOptions={{
         headerTintColor: "white",
@@ -21,7 +17,6 @@ const RootLayout = () => {
     >
       <Stack.Screen
         name="index"
-        component={WelcomePage}
         options={{
           title: t("welcomeScreen", { returnObjects: true }).title,
           headerRight: () => (
@@ -36,7 +31,6 @@ const RootLayout = () => {
       />
       <Stack.Screen
         name="language-selection"
-        component={LanguageSelection}
         options={{
           title: t("languageSelectionScreen", { returnObjects: true }).title,
           headerRight: () => (
@@ -51,41 +45,36 @@ const RootLayout = () => {
       />
       <Stack.Screen
         name="emergency-contact-setup"
-        component={EmergencyContactSetup}
         options={{
           title: t("emergencyContactScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
         name="listening-screen"
-        component={ListeningScreen}
         options={{
           title: t("listeningScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
         name="contact-view"
-        component={ContactsView}
         options={{
           title: t("contactViewScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
         name="confirmation-screen"
-        component={ConfirmationScreen}
         options={{
           title: t("confirmationScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
         name="setup-completion"
-        component={SetupCompletion}
         options={{
           title: t("setupCompleteScreen", { returnObjects: true }).title,
         }}
       />
-    </Stack.Navigator>
+    </Stack>
   );
 };
 
-export default RootLayout;
+export default InitialLayout;

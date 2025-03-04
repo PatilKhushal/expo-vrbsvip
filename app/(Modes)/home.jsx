@@ -5,6 +5,7 @@ import {setSpeechFinished, setTimeoutID} from '../../reducers/configurations';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearAudioQueues, speakWithPause} from '../../services/audioService';
 import { useFocusEffect, useNavigation } from 'expo-router';
+import i18n from '../../services/translationService';
 
 const Home = () => {
   const router = useNavigation();
