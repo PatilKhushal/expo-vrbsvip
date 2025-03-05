@@ -48,7 +48,7 @@ const ReadText = () => {
   console.log('recognizedLang :\n', recognizedLang);
 
   const handleNavigation = () => {
-    router.replace('text-recognition');
+    router.replace('TextRecognition/text-recognition');
   };
 
   return (

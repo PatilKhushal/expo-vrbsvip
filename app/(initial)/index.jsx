@@ -60,7 +60,7 @@ const SetupCompletion = () => {
       clearAudioQueues(intervalID, timeoutID);
       dispatch(setIsFirstTime(false));
       console.log("inside setup completion")
-      router.navigate('home'); // Navigate to the next screen
+      router.navigate('(Modes)/home'); // Navigate to the next screen
     }
   };
 

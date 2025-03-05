@@ -6,7 +6,7 @@ import Voice from '@react-native-voice/voice';
 import {useTranslation} from 'react-i18next';
 import Listening from '../../components/Listening';
 import {clearAudioQueues} from '../../services/audioService';
-import { useNavigation } from 'expo-router';
+import { useFocusEffect, useNavigation } from 'expo-router';
 
 const ModeSelectionScreen = () => {
   const dispatch = useDispatch();
@@ -32,15 +32,15 @@ const ModeSelectionScreen = () => {
     {
         switch(mode)
         {
-            case "text" : router.replace('text-recognition');
+            case "text" : router.replace('TextRecognition/text-recognition');
             console.log("Mode text recognition got selected")
             break;
 
-            case "home" : router.replace('home');
+            case "home" : router.replace('index');
             console.log("Mode home got selected")
             break;
 
-            case "object" : router.replace('objectRecognition');
+            case "object" : router.replace('ObjectDetection/object-image');
             break;
         }
     }

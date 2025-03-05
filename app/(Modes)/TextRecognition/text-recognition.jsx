@@ -55,7 +55,7 @@ const TextRecognitionScreen = () => {
     console.log("recognizedText Value:\t", result);
     dispatch(setRecognizedText(result.text));
 
-    router.dispatch(StackActions.replace("read-text"));
+    router.dispatch(StackActions.replace("TextRecognition/read-text"));
   };
 
   const playAudio = () => {
@@ -83,7 +83,7 @@ const TextRecognitionScreen = () => {
   useFocusEffect(handleAudioFeedback);
 
   const handleNavigation = () => {
-    router.dispatch(StackActions.replace("home"));
+    router.dispatch(StackActions.replace("index"));
   };
 
   return (

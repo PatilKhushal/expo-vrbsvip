@@ -14,7 +14,7 @@ const HomeLayout = () => {
       }}
     >
       <Stack.Screen
-        name="home"
+        name="index"
         options={{
           title: t("homeScreen", { returnObjects: true }).title,
         }}
@@ -25,26 +25,27 @@ const HomeLayout = () => {
           title: t("modeSelectionScreen", { returnObjects: true }).title,
         }}
       />
+      
       <Stack.Screen
-        name="text-recognition"
+        name="TextRecognition/text-recognition"
         options={{
           title: t("textRecognitionScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
-        name="read-text"
+        name="TextRecognition/read-text"
         options={{
           title: t("readTextScreen", { returnObjects: true }).title,
         }}
       />
       <Stack.Screen
-        name="objectRecognition"
+        name="ObjectDetection/object-image"
         options={{
           title: "Object Detection",
         }}
       />
       <Stack.Screen
-        name="objectResult"
+        name="ObjectDetection/object-result"
         options={{
           title: "Object Result",
         }}
