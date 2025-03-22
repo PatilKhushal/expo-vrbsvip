@@ -10,8 +10,8 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <Stack screenOptions={{headerShown: false}} >
-        <Stack.Screen name="(initial)"/>
-        <Stack.Screen name="(Modes)"/>
+        {/* <Stack.Screen name="initial"/> */}
+        <Stack.Screen name="Modes"/>
       </Stack>
     </Provider>
   );

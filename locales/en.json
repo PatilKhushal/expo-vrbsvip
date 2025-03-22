@@ -112,5 +112,29 @@
     "title": "Read Text Screen",
     "audio": [],
     "message": []
+  },
+
+  "objectDetectionScreen": {
+    "title": "Object Detection Screen",
+    "audio": [],
+    "message": []
+  },
+
+  "objectDetectionResultScreen": {
+    "title": "Detection Result Screen",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceScreen": {
+    "title": "Navigation Screen",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceResultScreen": {
+    "title": "Navigation Result Screen",
+    "audio": [],
+    "message": []
   }
 }

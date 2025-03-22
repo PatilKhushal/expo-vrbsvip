@@ -111,5 +111,29 @@
     "title": "मजकूर वाचन स्क्रीन",
     "audio": [],
     "message": []
+  },
+
+  "objectDetectionScreen": {
+    "title": "ऑब्जेक्ट डिटेक्शन स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "objectDetectionResultScreen": {
+    "title": "ऑब्जेक्ट डिटेक्शन परिणाम स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceScreen": {
+    "title": "नेव्हिगेशन स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceResultScreen": {
+    "title": "नेव्हिगेशन परिणाम स्क्रीन",
+    "audio": [],
+    "message": []
   }
 }

@@ -113,5 +113,29 @@
     "title": "टेक्स्ट रीड स्क्रीन",
     "audio": [],
     "message": []
+  },
+
+  "objectDetectionScreen": {
+    "title": "ऑब्जेक्ट डिटेक्शन स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "objectDetectionResultScreen": {
+    "title": "ऑब्जेक्ट डिटेक्शन परिणाम स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceScreen": {
+    "title": "नेविगेशन स्क्रीन",
+    "audio": [],
+    "message": []
+  },
+
+  "navigationAssistanceResultScreen": {
+    "title": "नेविगेशन परिणाम स्क्रीन",
+    "audio": [],
+    "message": []
   }
 }
