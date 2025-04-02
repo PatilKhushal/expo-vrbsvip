@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
 import {
-  StackActions,
-  useNavigation,
+  StackActions
 } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { setPhoto, setRecognizedText } from "../../../reducers/textMode";
@@ -17,9 +16,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { setMode } from "../../../reducers/voice";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { useRouter } from "expo-router";
 
 const ObjectImage = () => {
-  const router = useNavigation();
+  const router = useRouter();
   const { t } = useTranslation();
   const [hasPermission, requestPermission] = useCameraPermissions();
   const dispatch = useDispatch();
@@ -45,11 +45,11 @@ const ObjectImage = () => {
 
     console.log("Photo Path :\t", `file://${photo.uri}`);
 
-    router.dispatch(StackActions.replace("ObjectDetection/object-result",{
+    router.replace("ObjectDetection/object-result",{
       image : `file://${photo.uri}`,
       width : photo.width,
       height : photo.height
-    }));
+    });
   };
 
   const playAudio = () => {

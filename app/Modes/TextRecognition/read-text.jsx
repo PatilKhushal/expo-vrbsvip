@@ -6,13 +6,14 @@ import {
   setTimeoutID,
 } from '../../../reducers/configurations';
 import {clearAudioQueues, speakWithPause} from '../../../services/audioService';
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 
 const ReadText = () => {
   const photo = useSelector(state => state.textMode.photo);
   const recognizedText = useSelector(state => state.textMode.recognizedText);
   const recognizedLang = useSelector(state => state.textMode.recognizedLang);
-  const router = useNavigation();
+    const router = useRouter();
+  
   const intervalID = useSelector(state => state.configurations.intervalID);
   const timeoutID = useSelector(state => state.configurations.timeoutID);
   const timeoutRef = useRef(timeoutID);

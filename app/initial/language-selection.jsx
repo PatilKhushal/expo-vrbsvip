@@ -9,10 +9,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {clearAudioQueues, speakWithPause} from '../../services/audioService';
 import {useTranslation} from 'react-i18next';
 import {changeLanguage} from '../../services/translationService';
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 
 const LanguageSelection = () => {
-  const router = useNavigation();
+    const router = useRouter();
   const isSpeechFinished = useSelector(
     state => state.configurations.isSpeechFinished,
   );

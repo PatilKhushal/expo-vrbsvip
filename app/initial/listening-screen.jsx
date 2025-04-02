@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Listening from "../../components/Listening";
 import { setSRFinished, setSRResult, setSRStarted } from "../../reducers/voice";
 import { clearAudioQueues } from "../../services/audioService";
-import { useFocusEffect, useNavigation } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import {
   ExpoSpeechRecognitionModule,
   useSpeechRecognitionEvent,
@@ -20,7 +20,7 @@ const ListeningScreen = () => {
   const SR_Result = useSelector((state) => state.voice.SR_Result);
 
   const [isProceedDetected, setProceedDetected] = useState(false);
-  const router = useNavigation();
+    const router = useRouter();
   const { t } = useTranslation();
   const intervalID = useSelector((state) => state.configurations.intervalID);
   const timeoutID = useSelector((state) => state.configurations.timeoutID);

@@ -57,12 +57,6 @@ const HomeLayout = () => {
           title: t("navigationAssistanceScreen", { returnObjects: true }).title,
         }}
       />
-      <Stack.Screen
-        name="Navigation/NavigationResult"
-        options={{
-          title: t("navigationAssistanceResultScreen", { returnObjects: true }).title,
-        }}
-      />
     </Stack>
   );
 };

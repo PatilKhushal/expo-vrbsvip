@@ -10,11 +10,12 @@ import { clearAudioQueues, speakWithPause } from "../../services/audioService";
 import { useTranslation } from "react-i18next";
 import { setConfirmation, setSRResult } from "../../reducers/voice";
 import * as Contacts from "expo-contacts";
-import { useFocusEffect, useNavigation } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { useLocalSearchParams } from "expo-router";
 
 const EmergencyContactSetup = () => {
-  const router = useNavigation();
+    const router = useRouter();
+  
   const isSpeechFinished = useSelector(
     (state) => state.configurations.isSpeechFinished
   );

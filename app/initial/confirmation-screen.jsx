@@ -6,7 +6,7 @@ import Listening from "../../components/Listening";
 import { clearAudioQueues } from "../../services/audioService";
 import { setEmergencyContacts } from "../../reducers/configurations";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect, useNavigation } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import {
   ExpoSpeechRecognitionModule,
   useSpeechRecognitionEvent,
@@ -23,7 +23,7 @@ const ConfirmationScreen = () => {
     (state) => state.configurations.emergencyContacts
   );
 
-  const router = useNavigation();
+    const router = useRouter();
   const { t } = useTranslation();
   const intervalID = useSelector((state) => state.configurations.intervalID);
   const timeoutID = useSelector((state) => state.configurations.timeoutID);

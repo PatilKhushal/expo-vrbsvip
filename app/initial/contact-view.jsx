@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { clearAudioQueues, speakWithPause } from '../../services/audioService';
 import { setIntervalID, setSpeechFinished } from '../../reducers/configurations';
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { setConfirmation } from '../../reducers/voice';
 
 const ContactCard = ({item}) => {
@@ -50,7 +50,7 @@ const ContactsView = () => {
   const language = useSelector((state) => state.configurations.language);
     const isFirstTime = useSelector(state => state.configurations.isFirstTime);
   const dispatch = useDispatch();
-  const router = useNavigation()
+    const router = useRouter();
   const intervalID = useSelector((state) => state.configurations.intervalID);
   const timeoutID = useSelector((state) => state.configurations.timeoutID);
   const timeoutRef = useRef(timeoutID);

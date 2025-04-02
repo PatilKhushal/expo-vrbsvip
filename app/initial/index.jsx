@@ -1,6 +1,6 @@
 import { View, Text, Image, Pressable, ImageBackground } from "react-native";
 import React, { useCallback, useRef } from "react";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import {
   setSpeechFinished,
   setTimeoutID,
@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearAudioQueues, speakWithPause } from "../../services/audioService";
 import { useTranslation } from "react-i18next";
 import i18n from "../../services/translationService";
+import { useRouter } from "expo-router";
 
 const WelcomePage = () => {
-  const router = useNavigation();
+  const router = useRouter();
   const isSpeechFinished = useSelector(
     (state) => state.configurations.isSpeechFinished
   );

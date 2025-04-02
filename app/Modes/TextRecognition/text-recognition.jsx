@@ -3,7 +3,6 @@ import { Text, StyleSheet, Pressable } from "react-native";
 import {
   StackActions,
   useFocusEffect,
-  useNavigation,
 } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { setPhoto, setRecognizedText } from "../../../reducers/textMode";
@@ -21,9 +20,11 @@ import TextRecognition, {
 import { useTranslation } from "react-i18next";
 import { setMode } from "../../../reducers/voice";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { useRouter } from "expo-router";
 
 const TextRecognitionScreen = () => {
-  const router = useNavigation();
+    const router = useRouter();
+  
   const { t } = useTranslation();
   const [hasPermission, requestPermission] = useCameraPermissions();
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const TextRecognitionScreen = () => {
     console.log("recognizedText Value:\t", result);
     dispatch(setRecognizedText(result.text));
 
-    router.dispatch(StackActions.replace("TextRecognition/read-text"));
+    router.replace("TextRecognition/read-text");
   };
 
   const playAudio = () => {
@@ -83,7 +84,7 @@ const TextRecognitionScreen = () => {
   useFocusEffect(handleAudioFeedback);
 
   const handleNavigation = () => {
-    router.dispatch(StackActions.replace("index"));
+    router.replace("index");
   };
 
   return (

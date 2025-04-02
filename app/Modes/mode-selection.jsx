@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Listening from "../../components/Listening";
 import { clearAudioQueues } from "../../services/audioService";
-import { useFocusEffect, useNavigation } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import {
   ExpoSpeechRecognitionModule,
   useSpeechRecognitionEvent,
@@ -22,7 +22,8 @@ const ModeSelectionScreen = () => {
   const dispatch = useDispatch();
   const isSRFinished = useSelector((state) => state.voice.isSRFinished);
   const isSRStarted = useSelector((state) => state.voice.isSRStarted);
-  const router = useNavigation();
+    const router = useRouter();
+  
   const { t } = useTranslation();
   const intervalID = useSelector((state) => state.configurations.intervalID);
   const timeoutID = useSelector((state) => state.configurations.timeoutID);

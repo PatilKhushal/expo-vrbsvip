@@ -5,15 +5,15 @@ import {
   SSDLITE_320_MOBILENET_V3_LARGE,
 } from "react-native-executorch";
 import { useRoute } from "@react-navigation/native";
-import { useNavigation } from "expo-router";
 import { Dimensions } from 'react-native';
+import { useRouter } from "expo-router";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 console.log("Screen Dimensions:", screenWidth, screenHeight);
 
 const ObjectImage = () => {
   const route = useRoute();
-  const router = useNavigation();
+    const router = useRouter();
   const image = route.params?.image;
   const imageWidth = route.params?.width;
   const imageHeight = route.params?.height;
